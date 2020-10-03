@@ -29,7 +29,7 @@ class Sale(models.Model):
     total = models.DecimalField(max_digits=2, max_length=9, decimal_places=2)
 
     def __str__(self):
-        return self.client, self.sale_date, self.total
+        return self.sale_date, self.total
 
     class Meta:
         verbose_name = 'Venta'
@@ -52,11 +52,11 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name='Categoria', on_delete=models.CASCADE)
     name = models.CharField(verbose_name='Nombre', unique=True, max_length=100)
-    image = models.ImageField(upload_to='product/%Y/%m/%d', verbose_name='Imagen')
+    image = models.ImageField(upload_to='product/%Y/%m/%d', verbose_name='Imagen', null=True, blank=True)
     pvp = models.CharField(verbose_name='PvP', max_length=150)
 
     def __str__(self):
-        return self.name, self.category
+        return self.name
 
     class Meta:
         verbose_name = 'Producto'
@@ -72,7 +72,7 @@ class DetailSale(models.Model):
     subtotal = models.DecimalField(max_digits=2, max_length=9, decimal_places=2)
 
     def __str__(self):
-        return self.sale, self.product, self.quantity, self.subtotal
+        return self.quantity, self.subtotal
 
     class Meta:
         verbose_name = 'Detalle venta'
