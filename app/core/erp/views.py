@@ -11,7 +11,7 @@ def my_first_view(request):
         'name': 'Diego Lugo',
         'categories': Category.objects.all()
     }
-    return render(request, 'index.html', data)
+    return render(request, 'body.html', data)
 
 
 def my_second_view(request):
